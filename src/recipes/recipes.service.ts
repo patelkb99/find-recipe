@@ -1,5 +1,5 @@
 import { Injectable, HttpService } from '@nestjs/common';
-import { RecipePuppyData, VeryLongThing } from './interfaces/recipe.interface';
+import { RecipePuppyData, NutritionixResponse } from './interfaces/recipe.interface';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { NutritionPayloadDto } from './dto/nutritionpayload.dto';
@@ -12,7 +12,7 @@ export class RecipesService {
         return this.httpService.get(url);
     }
 
-    getDownstreamFoodsResponseData(url: string, payload: NutritionPayloadDto, headers): Observable<AxiosResponse<VeryLongThing>> {
+    getDownstreamFoodsResponseData(url: string, payload: NutritionPayloadDto, headers): Observable<AxiosResponse<NutritionixResponse>> {
         return this.httpService.post(url, payload, { headers });
     }
 }

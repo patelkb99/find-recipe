@@ -1,6 +1,6 @@
 import { map} from 'rxjs/operators';
 import { AxiosResponse } from 'axios';
-import { Recipe, RecipePuppyData, VeryLongThing, RecipeWithNutrition, IngredientsNutrition } from './interfaces/recipe.interface';
+import { Recipe, RecipePuppyData, NutritionixResponse, RecipeWithNutrition, IngredientsNutrition } from './interfaces/recipe.interface';
 
 const findRandomRecipe = () => {
     return map((response: AxiosResponse<RecipePuppyData>) => response.data.results[Math.floor(Math.random()*response.data.results.length)]);
@@ -20,7 +20,7 @@ const makeRandomFullRecipe = () => {
 }
 
 const reduceDownstreamNutritionResponse = (recipe: RecipeWithNutrition) => {
-    return map((response : AxiosResponse<VeryLongThing>) => {
+    return map((response : AxiosResponse<NutritionixResponse>) => {
         const arr: IngredientsNutrition[] = [];
         response.data.foods.forEach((item) => {
             const downstreamNutritionResponse:IngredientsNutrition = {

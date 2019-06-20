@@ -31,7 +31,7 @@ export interface IngredientsNutrition {
     protein: number;
     potassium: number;
 }
-export interface VeryLongThing {
+export interface NutritionixResponse {
     foods: DownstreamFullIngredientNutrition[];
 }
 export interface DownstreamFullIngredientNutrition {
