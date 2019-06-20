@@ -13,8 +13,6 @@ export class RecipesService {
     }
 
     getDownstreamFoodsResponseData(url: string, payload: NutritionPayloadDto, headers): Observable<AxiosResponse<VeryLongThing>> {
-        console.log(url);
-        console.log(headers);
         return this.httpService.post(url, payload, { headers });
     }
 }

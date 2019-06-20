@@ -10,7 +10,7 @@ export interface RecipeWithNutrition {
     href: string;
     ingredients: string;
     thumbnail: string;
-    nutrition: DownstreamNutritionResponse[];
+    nutrition: IngredientsNutrition[];
 }
 
 export interface RecipePuppyData {
@@ -20,37 +20,23 @@ export interface RecipePuppyData {
     results: Recipe[];
 }
 
-// export interface IngredientNutrition {
-//     food: string;
-//     serving_qty: number;
-//     calories: number;
-//     total_fat: number;
-//     saturated_fat: number;
-//     cholesterol: number;
-//     sodium: number;
-//     carbohydrate: number;
-//     fiber: number;
-//     sugars: number;
-//     protein: number;
-//     potassium: number;
-// }
-export interface VeryLongThing {
-    foods: DownstreamFullIngredientNutrition[];
+export interface IngredientsNutrition {
+    food: string;
+    serving_qty: number;
+    calories: number;
+    total_fat: number;
+    saturated_fat: number;
+    cholesterol: number;
+    sodium: number;
+    carbohydrate: number;
+    fiber: number;
+    sugars: number;
+    protein: number;
+    potassium: number;
 }
 
-export interface DownstreamNutritionResponse {
-    food_name: string;
-    serving_qty: number;
-    nf_calories: number;
-    nf_total_fat: number;
-    nf_saturated_fat: number;
-    nf_cholesterol: number;
-    nf_sodium: number;
-    nf_total_carbohydrate: number;
-    nf_dietary_fiber: number;
-    nf_sugars:number;
-    nf_protein: number;
-    nf_potassium: number;
+export interface VeryLongThing {
+    foods: DownstreamFullIngredientNutrition[];
 }
 
 export interface DownstreamFullIngredientNutrition {

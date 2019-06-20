@@ -19,24 +19,22 @@ const makeRandomFullRecipe = () => {
 };
 exports.makeRandomFullRecipe = makeRandomFullRecipe;
 const reduceDownstreamNutritionResponse = (recipe) => {
-    console.log("hit111");
     return operators_1.map((response) => {
-        console.log("hit");
         const arr = [];
         response.data.foods.forEach((item) => {
             const downstreamNutritionResponse = {
-                food_name: item.food_name,
+                food: item.food_name,
                 serving_qty: item.serving_qty,
-                nf_calories: item.nf_calories,
-                nf_total_fat: item.nf_total_fat,
-                nf_saturated_fat: item.nf_saturated_fat,
-                nf_cholesterol: item.nf_cholesterol,
-                nf_sodium: item.nf_sodium,
-                nf_total_carbohydrate: item.nf_total_carbohydrate,
-                nf_dietary_fiber: item.nf_dietary_fiber,
-                nf_sugars: item.nf_sugars,
-                nf_protein: item.nf_protein,
-                nf_potassium: item.nf_potassium
+                calories: item.nf_calories,
+                total_fat: item.nf_total_fat,
+                saturated_fat: item.nf_saturated_fat,
+                cholesterol: item.nf_cholesterol,
+                sodium: item.nf_sodium,
+                carbohydrate: item.nf_total_carbohydrate,
+                fiber: item.nf_dietary_fiber,
+                sugars: item.nf_sugars,
+                protein: item.nf_protein,
+                potassium: item.nf_potassium
             };
             arr.push(downstreamNutritionResponse);
         });

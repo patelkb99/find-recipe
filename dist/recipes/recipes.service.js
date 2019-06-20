@@ -18,8 +18,6 @@ let RecipesService = class RecipesService {
         return this.httpService.get(url);
     }
     getDownstreamFoodsResponseData(url, payload, headers) {
-        console.log(url);
-        console.log(headers);
         return this.httpService.post(url, payload, { headers });
     }
 };

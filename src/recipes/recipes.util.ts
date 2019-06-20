@@ -1,6 +1,6 @@
 import { map} from 'rxjs/operators';
 import { AxiosResponse } from 'axios';
-import { Recipe, RecipePuppyData, VeryLongThing, RecipeWithNutrition, DownstreamNutritionResponse } from './interfaces/recipe.interface';
+import { Recipe, RecipePuppyData, VeryLongThing, RecipeWithNutrition, IngredientsNutrition } from './interfaces/recipe.interface';
 
 const findRandomRecipe = () => {
     return map((response: AxiosResponse<RecipePuppyData>) => response.data.results[Math.floor(Math.random()*response.data.results.length)]);
@@ -20,24 +20,22 @@ const makeRandomFullRecipe = () => {
 }
 
 const reduceDownstreamNutritionResponse = (recipe: RecipeWithNutrition) => {
-    console.log("hit111")
     return map((response : AxiosResponse<VeryLongThing>) => {
-        console.log("hit");
-        const arr: DownstreamNutritionResponse[] = [];
+        const arr: IngredientsNutrition[] = [];
         response.data.foods.forEach((item) => {
-            const downstreamNutritionResponse:DownstreamNutritionResponse = {
-                food_name: item.food_name,
+            const downstreamNutritionResponse:IngredientsNutrition = {
+                food: item.food_name,
                 serving_qty: item.serving_qty,
-                nf_calories: item.nf_calories,
-                nf_total_fat: item.nf_total_fat,
-                nf_saturated_fat: item.nf_saturated_fat,
-                nf_cholesterol: item.nf_cholesterol,
-                nf_sodium: item.nf_sodium,
-                nf_total_carbohydrate: item.nf_total_carbohydrate,
-                nf_dietary_fiber: item.nf_dietary_fiber,
-                nf_sugars: item.nf_sugars,
-                nf_protein: item.nf_protein,
-                nf_potassium: item.nf_potassium
+                calories: item.nf_calories,
+                total_fat: item.nf_total_fat,
+                saturated_fat: item.nf_saturated_fat,
+                cholesterol: item.nf_cholesterol,
+                sodium: item.nf_sodium,
+                carbohydrate: item.nf_total_carbohydrate,
+                fiber: item.nf_dietary_fiber,
+                sugars: item.nf_sugars,
+                protein: item.nf_protein,
+                potassium: item.nf_potassium
             }
             arr.push(downstreamNutritionResponse);
         });
