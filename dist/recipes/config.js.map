@@ -1,0 +1,1 @@
+{"version":3,"file":"config.js","sourceRoot":"","sources":["../../src/recipes/config.ts"],"names":[],"mappings":";;AAAA,MAAM,MAAM,GAAG,OAAO,CAAC,QAAQ,CAAC,CAAC;AAEjC,MAAM,CAAC,MAAM,EAAE,CAAC;AAEhB,kBAAe;IACX,gBAAgB,EAAE,YAAY;IAC9B,iBAAiB,EAAE,kCAAkC;IACrD,wBAAwB,EAAE,CAAC;CAC9B,CAAC"}
