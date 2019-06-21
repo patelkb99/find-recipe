@@ -5,5 +5,5 @@ export declare class RecipesController {
     private readonly recipesService;
     constructor(recipesService: RecipesService);
     getAllRecipes(i: string, q: string): Observable<Recipe[]>;
-    getRandomRecipe(i: string, q: string): RecipeWithNutrition;
+    getRandomRecipe(i: string, q: string): Observable<RecipeWithNutrition>;
 }
