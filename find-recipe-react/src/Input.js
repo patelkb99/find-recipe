@@ -74,16 +74,58 @@ class Input extends React.Component {
             ingredient3: "",
         });
     }  
+    
+    onAmericaClick() {
+        var image_america =  document.getElementById("america");
+        var image_france =  document.getElementById("france");
+        var image_italy =  document.getElementById("italy");
+
+        if (image_america.getAttribute('src') === "america.png") {
+            image_america.src = "america-selected.png";
+            image_italy.src = "italy.png";
+            image_france.src = "france.png";
+            this.state.cuisine = "American";
+            console.log(`${this.state.cuisine}`);
+        } else {
+            image_america.src = "america.png";
+        }     
+    }
+
+    onFranceClick() {
+        var image =  document.getElementById("france");
+        if (image.getAttribute('src') === "france.png") {
+            image.src = "france-selected.png";
+            this.state.cuisine = "French";
+            console.log(`${this.state.cuisine}`);
+        } else {
+            image.src = "france.png";
+        }   
+    }
+
+    onItalyClick() {
+        var image =  document.getElementById("italy");
+        if (image.getAttribute('src') === "italy.png") {
+            image.src = "italy-selected.png";
+            this.state.cuisine = "Italian";
+            console.log(`${this.state.cuisine}`);
+        } else {
+            image.src = "italy.png";
+        }   
+    }
 
     render() {
-        const found = this.state.found;
         return (
             <div className="input">
+                <div className="cuisine-images">
+                    <img id="america" src="america.png" alt="American Flag Circle" height="15%" onClick={() => this.onAmericaClick()}  title="American Food"/>
+                    <img id="france" src="france.png" alt="French Flag Circle" height="15%" onClick={() => this.onFranceClick()}  title="French Food"/>
+                    <img id="italy" src="italy.png" alt="Italian Flag Circle" height="15%" onClick={() => this.onItalyClick()}  title="Italian Food"/>
+
+                </div>
                 <div className="form">
                     <form onSubmit={this.handleSubmit}>
                         <label>
-                            <div className="custom-select">
-                                Cuisine* :
+                            {/* <div className="custom-select">
                                 <select value={this.state.cuisine} onChange={this.onSelectChange}>
                                     <option value="">Any Cuisine</option>                                    
                                     <option value="American">American</option>
@@ -102,25 +144,20 @@ class Input extends React.Component {
                                     <option value="Caribbean">Italian</option>
                                     <option value="Thai">Thai</option>
                                 </select>
-                            </div>
+                            </div> */}
                         </label>
                         <br></br>
                         <label>
-                            Ingredient 1:
                             <input
                                 name="Ingredient 1"
                                 type="text"
                                 value={this.state.ingredient1}
                                 onChange={this.onIngredient1Change} />
-                            <br></br>
-                            Ingredient 2:
                             <input
                                 name="Ingredient 2"
                                 type="text"
                                 value={this.state.ingredient2}
                                 onChange={this.onIngredient2Change} />
-                            <br></br>
-                            Ingredient 3:
                             <input
                                 name="Ingredient 3"
                                 type="text"

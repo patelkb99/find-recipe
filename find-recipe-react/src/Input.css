@@ -56,7 +56,6 @@ input[type=submit] {
     text-align: center;
 }
 
-
 #recipe-response {
     text-align: center;
     padding-top: 0px;
@@ -81,5 +80,12 @@ a:hover {
 
 h4 {
     float: center;
+    text-align: center;
+}
+
+img {
+}
+
+.cuisine-images {
     text-align: center;
 }
