@@ -1,3 +1,85 @@
-/* input {
-    width: 75%;
-} */
+
+.form {
+    font-size: 18px;
+}
+
+
+.input {
+    width: 40%;
+    align: relative;
+    padding-top: 15px;
+}
+ 
+select {
+    border-color:#EEEEEE;
+    border-width: 1px;
+    background-color: white;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.custom-select {
+    position: relative;
+    padding: 0;
+}
+
+input[type=text] {
+    border-color:#EEEEEE;
+    border-width: 1px;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+input[type=submit] {
+    border-color:#EEEEEE;
+    border-width: 1px;
+    background-color: white;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 25%;
+}
+
+.submit {
+    text-align: center;
+}
+
+
+#recipe-response {
+    text-align: center;
+    padding-top: 0px;
+    margin: 0px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a:link {
+    color: #00005F;
+}
+
+a:visited {
+    color:#282c34;
+}
+
+a:hover {
+    color: #002b80;
+}
+
+h4 {
+    float: center;
+    text-align: center;
+}
