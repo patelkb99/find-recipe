@@ -1,30 +1,39 @@
+.filters {
+    width: 75%;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+.cuisine-images {
+    display: flex;
+    flex-direction: ltr;
+    justify-content: space-around;
+    align-items: center;
+}
+
+span {
+    background-size: contain;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    font-size: 70px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid #EEEEEE;
+}
 
 .form {
+    width: 50%;
+}
+
+.ingredient-input {
     font-size: 18px;
-}
-
-
-.input {
-    width: 40%;
-    align: relative;
-    padding-top: 15px;
-}
- 
-select {
-    border-color:#EEEEEE;
-    border-width: 1px;
-    background-color: white;
-    color: #000000;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 12px;
-    width: 100%;
-}
-
-.custom-select {
-    position: relative;
-    padding: 0;
+    display: flex;
+    flex-direction: ltr;
+    justify-content: space-between;
+    align-items: center;
 }
 
 input[type=text] {
@@ -33,12 +42,11 @@ input[type=text] {
     background-color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    width: 100%;
+    width: 30%;
     padding: 5px;
-    margin: 8px 0;
+    margin-top: 30px;
     box-sizing: border-box;
 }
-
 
 input[type=submit] {
     border-color:#EEEEEE;
@@ -49,7 +57,6 @@ input[type=submit] {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
-    width: 25%;
 }
 
 .submit {
@@ -62,10 +69,6 @@ input[type=submit] {
     margin: 0px;
 }
 
-ul {
-    list-style-type: none;
-}
-
 a:link {
     color: #00005F;
 }
@@ -76,16 +79,4 @@ a:visited {
 
 a:hover {
     color: #002b80;
-}
-
-h4 {
-    float: center;
-    text-align: center;
-}
-
-img {
-}
-
-.cuisine-images {
-    text-align: center;
 }

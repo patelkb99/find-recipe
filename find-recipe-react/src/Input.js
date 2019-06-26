@@ -11,24 +11,21 @@ class Input extends React.Component {
         ingredient1: "",
         ingredient2: "",
         ingredient3: "",
-        // countries = [
-        //     "Any Cuisine",                                  
-        //     "American",
-        //     "Chinese",
-        //     "Colombian",
-        //     "French",
-        //     "Greek",
-        //     "Indian",
-        //     "Italian",
-        //     "Japanese",
-        //     "Korean",
-        //     "Lebanese",
-        //     "Mediterranean",
-        //     "Mexican",
-        //     "Spanish",
-        //     "Caribbean",
-        //     "Thai",
-        // ]
+        cuisines: [
+            'american',
+            'chinese',
+            // 'columbian',
+            'french',
+            // 'greek',
+            'indian',
+            'italian',
+            // 'japanese',
+            // 'korean',
+            // 'mexican',
+            // 'spanish',
+            // 'caribbean',
+            // 'thai',
+        ]
       };
   
       this.onIngredient1Change = this.onIngredient1Change.bind(this);
@@ -92,89 +89,57 @@ class Input extends React.Component {
             ingredient3: "",
         });
     }  
-    
-    onAmericaClick() {
-        var image_america =  document.getElementById("america");
-        var image_france =  document.getElementById("france");
-        var image_italy =  document.getElementById("italy");
 
-        if (image_america.getAttribute('src') === "america.png") {
-            image_america.src = "america-selected.png";
-            image_italy.src = "italy.png";
-            image_france.src = "france.png";
-            this.state.cuisine = "American";
+    onClick(image) {
+        if (`${image.id}.png` === "america-selected.png") {
+            image.src = `${image.id}.png`;
         } else {
-            image_america.src = "america.png";
-        }     
+            for (let i = 0; i < (this.state.cuisines.length); i++) {
+                var currentCountry = this.state.cuisines[i];
+                var temp = document.getElementById(`${currentCountry}`);
+                temp.src = `${temp.id}.png`;
+                this.state.cuisine = image.id;
+            }
+            image.src = `${image.id}-selected.png`;
+        }
+        console.log(this.state.cuisine);
     }
 
-    onFranceClick() {
-        var image_america =  document.getElementById("america");
-        var image_france =  document.getElementById("france");
-        var image_italy =  document.getElementById("italy");
-
-        if (image_france.getAttribute('src') === "france.png") {
-            image_france.src = "france-selected.png";
-            image_america.src = "america.png";
-            image_italy.src = "italy.png";
-            this.state.cuisine = "French";
-        } else {
-            image_france.src = "france.png";
-        }   
-    }
-
-    onItalyClick() {
-        var image_america =  document.getElementById("america");
-        var image_france =  document.getElementById("france");
-        var image_italy =  document.getElementById("italy");
-
-        if (image_italy.getAttribute('src') === "italy.png") {
-            image_italy.src = "italy-selected.png";
-            image_america.src = "america.png";
-            image_france.src = "france.png";
-            this.state.cuisine = "Italian";
-        } else {
-            image_italy.src = "italy.png";
-        }   
-    }
+    // onClick(image) {
+    //     console.log(image)
+    //     if (image === "america-selected.png") {
+    //         image.src = `${image.id}.png`;
+    //     } else {
+    //         for (let i = 0; i < (this.state.cuisines.length); i++) {
+    //             var currentCountry = this.state.cuisines[i];
+    //             var temp = document.getElementById(`${currentCountry}`);
+    //             temp.src = `${temp.id}.png`;
+    //             this.state.cuisine = image.id;
+    //         }
+    //         image.src = `${image.id}-selected.png`;
+    //     }
+    //     console.log(this.state.cuisine);
+    // }
 
     render() {
         return (
-            <div className="input">
+            <div className="filters">
                 <div className="cuisine-images">
-                    <img id="america" src="america.png" alt="American Flag Circle" height="15%" onClick={() => this.onAmericaClick()}  title="American Food"/>
-                    <img id="france" src="france.png" alt="French Flag Circle" height="15%" onClick={() => this.onFranceClick()}  title="French Food"/>
-                    <img id="italy" src="italy.png" alt="Italian Flag Circle" height="15%" onClick={() => this.onItalyClick()}  title="Italian Food"/>
+                    {/* <span id="american" class="flag-icon flag-icon-us flag-icon-squared" title="American Food" onClick={() => this.onClick(document.getElementById("american"))}> </span>
+                    <span id="chinese" class="flag-icon flag-icon-cn flag-icon-squared" title="Chinese Food"> </span>
+                    <span id="italy" class="flag-icon flag-icon-it flag-icon-squared" title="Italian Food"> </span>
+                    <span id="french" class="flag-icon flag-icon-fr flag-icon-squared" title="French Food"> </span>
+                    <span id="indian" class="flag-icon flag-icon-in flag-icon-squared" title="Indian Food"> </span> */}
 
+                    <img id="american" src="american.png" alt="American Flag Circle" height="15%" onClick={() => this.onClick(document.getElementById("american"))}  title="American Food"/>
+                    <img id="french" src="french.png" alt="French Flag Circle" height="15%" onClick={() => this.onClick(document.getElementById("french"))}  title="French Food"/>
+                    <img id="italian" src="italian.png" alt="Italian Flag Circle" height="15%" onClick={() => this.onClick(document.getElementById("italian"))}  title="Italian Food"/>
+                    <img id="indian" src="indian.png" alt="Indian Flag Circle" height="15%" onClick={() => this.onClick(document.getElementById("indian"))}  title="Indian Food"/>
+                    <img id="chinese" src="chinese.png" alt="Chinese Flag Circle" height="15%" onClick={() => this.onClick(document.getElementById("chinese"))}  title="Chinese Food"/>
                 </div>
                 <div className="form">
                     <form onSubmit={this.handleSubmit}>
-                        <label>
-                            {/* <div className="custom-select">
-                                <select value={this.state.cuisine} onChange={this.onSelectChange}>
-                                    <option value="">Any Cuisine</option>                                    
-                                    <option value="American">American</option>
-                                    <option value="Chinese">Chinese</option>
-                                    <option value="Colombian">Colombian</option>
-                                    <option value="French">French</option>
-                                    <option value="Greek">Greek</option>
-                                    <option value="Indian">Indian</option>
-                                    <option value="Italian">Italian</option>
-                                    <option value="Japanese">Japanese</option>
-                                    <option value="Korean">Korean</option>
-                                    <option value="Lebanese">Lebanese</option>
-                                    <option value="Mediterranean">Mediterranean</option>
-                                    <option value="Mexican">Mexican</option>
-                                    <option value="Spanish">Spanish</option>
-                                    <option value="Caribbean">Italian</option>
-                                    <option value="Thai">Thai</option>
-                                </select>
-                            </div> */}
-
-
-                        </label>
-                        <br></br>
-                        <label>
+                        <label className="ingredient-input">
                             <input
                                 name="Ingredient 1"
                                 type="text"
@@ -194,15 +159,11 @@ class Input extends React.Component {
                         <br></br>
                         <div className="submit">
                             <input name="submit-button" type="submit" value="Submit"/>
-                        </div>
-                            
+                        </div> 
                     </form>
                 </div>
                 <div id="recipe-response" style={{display: this.state.found ? 'block' : 'none' }} >
                     <h4>You should cook <a href={this.state.recipe.href} target="_blank">{this.state.recipe.title}</a> today!</h4>
-                    <br></br>
-                    <br></br>
-                    <br></br>
                     <p>Ingredients: {this.state.recipe.ingredients}</p>
                 </div>
             </div>
