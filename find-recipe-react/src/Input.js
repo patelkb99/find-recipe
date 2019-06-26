@@ -11,6 +11,24 @@ class Input extends React.Component {
         ingredient1: "",
         ingredient2: "",
         ingredient3: "",
+        // countries = [
+        //     "Any Cuisine",                                  
+        //     "American",
+        //     "Chinese",
+        //     "Colombian",
+        //     "French",
+        //     "Greek",
+        //     "Indian",
+        //     "Italian",
+        //     "Japanese",
+        //     "Korean",
+        //     "Lebanese",
+        //     "Mediterranean",
+        //     "Mexican",
+        //     "Spanish",
+        //     "Caribbean",
+        //     "Thai",
+        // ]
       };
   
       this.onIngredient1Change = this.onIngredient1Change.bind(this);
@@ -85,31 +103,38 @@ class Input extends React.Component {
             image_italy.src = "italy.png";
             image_france.src = "france.png";
             this.state.cuisine = "American";
-            console.log(`${this.state.cuisine}`);
         } else {
             image_america.src = "america.png";
         }     
     }
 
     onFranceClick() {
-        var image =  document.getElementById("france");
-        if (image.getAttribute('src') === "france.png") {
-            image.src = "france-selected.png";
+        var image_america =  document.getElementById("america");
+        var image_france =  document.getElementById("france");
+        var image_italy =  document.getElementById("italy");
+
+        if (image_france.getAttribute('src') === "france.png") {
+            image_france.src = "france-selected.png";
+            image_america.src = "america.png";
+            image_italy.src = "italy.png";
             this.state.cuisine = "French";
-            console.log(`${this.state.cuisine}`);
         } else {
-            image.src = "france.png";
+            image_france.src = "france.png";
         }   
     }
 
     onItalyClick() {
-        var image =  document.getElementById("italy");
-        if (image.getAttribute('src') === "italy.png") {
-            image.src = "italy-selected.png";
+        var image_america =  document.getElementById("america");
+        var image_france =  document.getElementById("france");
+        var image_italy =  document.getElementById("italy");
+
+        if (image_italy.getAttribute('src') === "italy.png") {
+            image_italy.src = "italy-selected.png";
+            image_america.src = "america.png";
+            image_france.src = "france.png";
             this.state.cuisine = "Italian";
-            console.log(`${this.state.cuisine}`);
         } else {
-            image.src = "italy.png";
+            image_italy.src = "italy.png";
         }   
     }
 
@@ -145,6 +170,8 @@ class Input extends React.Component {
                                     <option value="Thai">Thai</option>
                                 </select>
                             </div> */}
+
+
                         </label>
                         <br></br>
                         <label>
