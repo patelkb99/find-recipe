@@ -10,6 +10,7 @@ function App() {
         <header >
             <h4>Welcome to Recipe Finder! </h4>
             <img src="logo_clear.png" alt="Find Recipe Logo" height="15%"/>
+            
         </header>
       </div>
       

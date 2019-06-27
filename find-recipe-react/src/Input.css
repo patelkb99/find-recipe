@@ -22,6 +22,7 @@ span {
     margin-left: 5px;
     margin-right: 5px;
     border: 1px solid #EEEEEE;
+    border-radius: 50%;
 }
 
 .form {
