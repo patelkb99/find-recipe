@@ -1,13 +1,32 @@
 import React from 'react';
 import './Input.css';
-import ReactTooltip from 'react-tooltip'
+import Hover from './Hover';
 
 class Input extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         found: false,
-        recipe: {},
+        recipe: {
+            title: "string",
+            href: "string",
+            ingredients: "string",
+            thumbnail: "string",
+            nutrition: [{
+                food: "string",
+                serving_qty: 0,
+                calories: 0,
+                total_fat: 0,
+                saturated_fat: 0,
+                cholesterol: 0,
+                sodium: 0,
+                carbohydrate: 0,
+                fiber: 0,
+                sugars: 0,
+                protein: 0,
+                potassium: 0
+            }]
+        },
         cuisine: "",
         ingredient1: "",
         ingredient2: "",
@@ -158,9 +177,7 @@ class Input extends React.Component {
                 </div>
                 <div id="recipe-response" style={{display: this.state.found ? 'block' : 'none' }} >
                     <h4>You should cook <a href={this.state.recipe.href} target="_blank" rel="noopener noreferrer">{this.state.recipe.title}</a> today!</h4>
-                    <p>Ingredients: {this.state.recipe.ingredients}</p>
-                    {/* <p data-tip={{this.state.recipe}}>Ingredients: {this.state.recipe.ingredients}</p> */}
-                    {/* <ReactTooltip /> */}
+                    <Hover nutrition={this.state.recipe.nutrition} ingredients={this.state.recipe.ingredients} found={this.state.found }/>
                 </div>
             </div>
         );
