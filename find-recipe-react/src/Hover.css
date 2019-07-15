@@ -1,7 +1,65 @@
-.ingredients {
-    margin: 10px;
-    display: flex;
-    flex-direction: ltr;
-    justify-content: space-evenly;
-    align-items: center;   
+#i0 {
+    width: 20%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i1 {
+    /* width: 100%; */
+    padding: 5px;
+    text-align: left;
+}
+
+#i2 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i3 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i4 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i5 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i6 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i7 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i8 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i9 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+}
+
+#i10 {
+    width: 100%;
+    padding: 5px;
+    text-align: left;
 }

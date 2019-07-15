@@ -8,12 +8,12 @@ class Input extends React.Component {
       this.state = {
         found: false,
         recipe: {
-            title: "string",
-            href: "string",
-            ingredients: "string",
-            thumbnail: "string",
+            title: "",
+            href: "",
+            ingredients: "",
+            thumbnail: "",
             nutrition: [{
-                food: "string",
+                food: "",
                 serving_qty: 0,
                 calories: 0,
                 total_fat: 0,
@@ -91,6 +91,7 @@ class Input extends React.Component {
             if (this.state.ingredient3 !== "" ) {
                 url += this.state.ingredient3 + ",";
             }
+            console.log(`http://localhost:3000/recipes/random/?i=${url}&q=${this.state.cuisine}`);
             await fetch(`http://localhost:3000/recipes/random/?i=${url}&q=${this.state.cuisine}`)
             .then(response => response.json())
             .then(
@@ -177,6 +178,7 @@ class Input extends React.Component {
                 </div>
                 <div id="recipe-response" style={{display: this.state.found ? 'block' : 'none' }} >
                     <h4>You should cook <a href={this.state.recipe.href} target="_blank" rel="noopener noreferrer">{this.state.recipe.title}</a> today!</h4>
+                    <div id="ingredient-list">Ingredients:</div>
                     <Hover nutrition={this.state.recipe.nutrition} ingredients={this.state.recipe.ingredients} found={this.state.found }/>
                 </div>
             </div>

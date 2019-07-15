@@ -2,7 +2,7 @@ import React from 'react';
 import './Hover.css';
 import ReactTooltip from 'react-tooltip'
 
-class Hover extends React.Component {
+class Hover extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +12,13 @@ class Hover extends React.Component {
     }
 
     extractData() {
+        // remove old ingredient divs
+        for (let i = 0; i < this.state.nutrients.length; i++) {
+            var elem = document.getElementById("block" + i);
+            if (elem) {elem.remove();}
+        }
+        this.state.nutrients = [];
+
         for (let i = 0; i < this.props.nutrition.length; i++ ) {
             this.state.nutrients.push(this.props.nutrition[i]);
         }
@@ -30,40 +37,59 @@ class Hover extends React.Component {
             temp +=  "\nProtein: " + n.protein;
             temp +=  "\nPotassium: " + n.potassium;
             this.state.individualNutrition.push(temp);
+            console.log(temp);
         }
+        
     }   
 
-    render() {   
-        if (this.props.found) {
+    createDivs() {
+        var arr = this.props.ingredients.split(", ");
+        var arrayDiv = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            arrayDiv[i] = document.createElement('div');
+            arrayDiv[i].id = 'block' + i;
+            arrayDiv[i].style = "margin: 2px";
+            let paragraph = document.createElement('p');
+            // let tip = document.createElement('ReactTooltip');
+            if (i === arr.length - 1) {paragraph.textContent = arr[i]}
+            else {paragraph.textContent = arr[i] + ", ";}
+            paragraph.textContent = arr[i] + ", ";
+            paragraph.setAttribute("data-tip", `${this.state.individualNutrition[i]}`);
+            paragraph.setAttribute("data-for", `i${i}`);
+            // tip.setAttribute("id", `i${i}`)
+            arrayDiv[i].appendChild(paragraph);
+            arrayDiv[i].appendChild(paragraph);
+            document.getElementById('ingredient-list').appendChild(arrayDiv[i]);
+        }     
+    }
+
+    render() {
+        if (this.props.ingredients) {
             return (
-                <div className="ingredients">
-                    {this.extractData()}
-                    <div>
-                        <p data-tip={`${this.state.individualNutrition[0]}`} data-for='i0'>{this.state.nutrients[0].food}, </p>
-                        <ReactTooltip id='i0' style=""/>
-                    </div>
-                    <div>
-                        <p data-tip={`${this.state.individualNutrition[1]}`} data-for='i1'>{this.state.nutrients[1].food}, </p>
-                        <ReactTooltip id='i1'/>
-                    </div>
-                    <div>
-                        <p data-tip={`${this.state.individualNutrition[2]}`} data-for='i2'>{this.state.nutrients[2].food}, </p>
-                        <ReactTooltip id='i2'/>
-                    </div>
-                    <div>
-                        <p data-tip={`${this.state.individualNutrition[3]}`} data-for='i3'>{this.state.nutrients[3].food}, </p>
-                        <ReactTooltip id='i3'/>
-                    </div>
-                    <div>
-                        <p data-tip={`${this.state.individualNutrition[4]}`} data-for='i4'>{this.state.nutrients[4].food} </p>
-                        <ReactTooltip id='i4'/>
-                    </div>
-                </div>
+                <div> 
+                    <div id="ingredients">
+                        {this.extractData()}
+                        {this.createDivs()}
+                        <div>
+                            <ReactTooltip id='i0'/>
+                            <ReactTooltip id='i1'/>
+                            <ReactTooltip id='i2'/>
+                            <ReactTooltip id='i3'/>
+                            <ReactTooltip id='i4'/>
+                            <ReactTooltip id='i5'/>
+                            <ReactTooltip id='i6'/>
+                            <ReactTooltip id='i7'/>
+                            <ReactTooltip id='i8'/>
+                            <ReactTooltip id='i9'/>
+                            <ReactTooltip id='i10'/>
+                        </div>
+                    </div>    
+                </div>  
             )
         } else {
             return (
-                <div>
-                </div>   
+                <div></div>   
             )
         }
         
