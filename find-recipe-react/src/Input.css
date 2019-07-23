@@ -64,13 +64,18 @@ input[type=submit] {
     text-align: center;
 }
 
+.what-to-cook {
+    margin-top: 25;
+    margin-bottom: 0px;
+}
+
 #recipe-response {
     text-align: center;
     padding-top: 0px;
     margin: 0px;
     display: flex;
     flex-direction: ltr;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 #ingredient-list {
@@ -78,7 +83,7 @@ input[type=submit] {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 3px;
+    margin: 1px;
     justify-content: space-around;
 }
 
@@ -93,4 +98,3 @@ a:visited {
 a:hover {
     color: #002b80;
 }
-

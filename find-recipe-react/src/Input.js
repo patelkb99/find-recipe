@@ -1,6 +1,7 @@
 import React from 'react';
 import './Input.css';
 import Hover from './Hover';
+import ReactTooltip from 'react-tooltip'
 
 class Input extends React.Component {
     constructor(props) {
@@ -113,6 +114,8 @@ class Input extends React.Component {
             ingredient2: "",
             ingredient3: "",
         });
+        this.forceUpdate();
+
     }  
 
     onClick(image) {
@@ -177,9 +180,11 @@ class Input extends React.Component {
                     </form>
                 </div>
                 <div id="recipe-response" style={{display: this.state.found ? 'block' : 'none' }} >
-                    <h4>You should cook <a href={this.state.recipe.href} target="_blank" rel="noopener noreferrer">{this.state.recipe.title}</a> today!</h4>
-                    <div id="ingredient-list">Ingredients:</div>
-                    <Hover nutrition={this.state.recipe.nutrition} ingredients={this.state.recipe.ingredients} found={this.state.found }/>
+                    <h4 className="what-to-cook">You should cook <a href={this.state.recipe.href} target="_blank" rel="noopener noreferrer">{this.state.recipe.title}</a> today!</h4>
+                    <div id="ingredient-list">
+                        Ingredients:
+                    </div>
+                    <Hover nutrition={ this.state.recipe.nutrition} ingredients={this.state.recipe.ingredients} found={this.state.found }/>
                 </div>
             </div>
         );
