@@ -26,7 +26,6 @@ class Hover extends React.PureComponent {
             for (var i = 0; i < this.state.nutrients.length; i++) {
                 var temp = "";
                 var n = this.state.nutrients[i];
-                // temp += this.state.ingredients[i] + " Nutrition Facts: ";
                 temp += " Serving Quantity: " + n.serving_qty + ", ";
                 temp += "\nCalories : " + n.calories + "cals, ";
                 temp += "\nTotal Fat: " + n.total_fat + "g, ";
@@ -61,8 +60,8 @@ class Hover extends React.PureComponent {
                     paragraph.textContent = arr[i] + ", ";
                 }
                 paragraph.setAttribute("data-tip", `${this.state.individualNutrition[i]}`);
-
                 paragraph.setAttribute("data-for", `i${i}`);
+
                 arrayDiv[i].appendChild(paragraph);
                 arrayDiv[i].appendChild(paragraph);
                 document.getElementById('ingredient-list').appendChild(arrayDiv[i]);
@@ -75,7 +74,6 @@ class Hover extends React.PureComponent {
             this.extractData();
             this.createDivs();
         }
-        this.forceUpdate();
     }
 
     render() {
@@ -84,6 +82,7 @@ class Hover extends React.PureComponent {
                 <div id="ingredients"> 
                     {this.extractData()}
                     {this.createDivs()}
+                    {ReactTooltip.rebuild()}
                     <ReactTooltip id='i0'/>
                     <ReactTooltip id='i1'/>
                     <ReactTooltip id='i2'/>

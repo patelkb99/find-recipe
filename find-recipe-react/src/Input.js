@@ -45,7 +45,8 @@ class Input extends React.Component {
             'mexican',
             'spanish',
             'thai',
-        ]
+        ],
+        nutrients: [],
       };
   
       this.onIngredient1Change = this.onIngredient1Change.bind(this);
@@ -79,6 +80,39 @@ class Input extends React.Component {
         });
     }
 
+    extractData() {
+        if (this.props.found) {
+            // remove old ingredient divs
+            for (let i = 0; i < this.state.nutrients.length; i++) {
+                var elem = document.getElementById("block" + i);
+                if (elem) {elem.remove();}
+            }
+            this.state.nutrients = [];
+
+            for (let i = 0; i < this.props.nutrition.length; i++ ) {
+                this.state.nutrients.push(this.props.nutrition[i]);
+            }
+            for (var i = 0; i < this.state.nutrients.length; i++) {
+                var temp = "";
+                var n = this.state.nutrients[i];
+                // temp += this.state.ingredients[i] + " Nutrition Facts: ";
+                temp += " Serving Quantity: " + n.serving_qty + ", ";
+                temp += "\nCalories : " + n.calories + "cals, ";
+                temp += "\nTotal Fat: " + n.total_fat + "g, ";
+                temp += "\nSaturated Fat: " + n.saturated_fat + "g, ";
+                temp += "\nCholesterol: " + n.cholesterol + "g, ";
+                temp += "\nSodium: " + n.sodium + "g, ";
+                temp += "\nCarbohydrate: " + n.carbohydrate + "g, ";
+                temp += "\nFiber: " + n.fiber + "g, ";
+                temp += "\nSugars: " + n.sugars  + "g, ";
+                temp += "\nProtein: " + n.protein + "g, ";
+                temp += "\nPotassium: " + n.potassium + "g";
+                this.state.individualNutrition.push(temp);
+                console.log(temp);
+            }
+        }
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
         try {
@@ -104,7 +138,6 @@ class Input extends React.Component {
             }).catch((error) => { 
                 console.log(error); 
             });
-            document.getElementById('recipe-response').style.display = "block";
 
         } catch (error) {
             console.log(error);
@@ -114,7 +147,8 @@ class Input extends React.Component {
             ingredient2: "",
             ingredient3: "",
         });
-        this.forceUpdate();
+        this.extractData();
+        document.getElementById('recipe-response').style.display = "block";
 
     }  
 
