@@ -1,65 +1,10 @@
-#i0 {
+#i0, #i1, #i2, #i3, #i4, #i5, #i6, #i7, #i8, #i9, #i10, #i11, #i12, #i13, #i14, #i15 {
     width: 20%;
     padding: 5px;
     text-align: center;
 }
 
-#i1 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i2 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i3 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i4 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i5 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i6 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i7 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i8 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i9 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
-}
-
-#i10 {
-    width: 20%;
-    padding: 5px;
-    text-align: center;
+div {
+    white-space: nowrap;
+    overflow: hidden;
 }

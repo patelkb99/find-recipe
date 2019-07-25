@@ -6,7 +6,6 @@ import { map, flatMap } from 'rxjs/operators';
 import config from '../config';
 import { findRandomRecipe, reduceDownstreamNutritionResponse, makeRandomFullRecipe } from './recipes.util'
 
-
 @Controller('recipes')
 export class RecipesController {
     constructor(private readonly recipesService: RecipesService) {}
@@ -38,7 +37,7 @@ export class RecipesController {
     }
 
     // temporary hard coded values to use for front end development
-    // Free Nutritionix Subscription has a 50 call limit per day
+    // Free Nutritionix Subscription has a 200 call limit per day
     // @Get('/random')
     // getRandomRecipe(@Query('i') i: string, @Query('q') q: string): RecipeWithNutrition {
     //     return {

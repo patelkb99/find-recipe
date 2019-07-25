@@ -20,14 +20,15 @@ class Hover extends React.PureComponent {
             }
             this.state.nutrients = [];
 
+            // add new ingredient divs
             for (let i = 0; i < this.props.nutrition.length; i++ ) {
                 this.state.nutrients.push(this.props.nutrition[i]);
             }
             for (var i = 0; i < this.state.nutrients.length; i++) {
                 var temp = "";
                 var n = this.state.nutrients[i];
-                temp += " Serving Quantity: " + n.serving_qty + ", ";
-                temp += "\nCalories : " + n.calories + "cals, ";
+                temp += "Serving Quantity: " + n.serving_qty + ", ";
+                temp += "\nCalories: " + n.calories + "cals, ";
                 temp += "\nTotal Fat: " + n.total_fat + "g, ";
                 temp += "\nSaturated Fat: " + n.saturated_fat + "g, ";
                 temp += "\nCholesterol: " + n.cholesterol + "g, ";
@@ -38,7 +39,6 @@ class Hover extends React.PureComponent {
                 temp += "\nProtein: " + n.protein + "g, ";
                 temp += "\nPotassium: " + n.potassium + "g";
                 this.state.individualNutrition.push(temp);
-                console.log(temp);
             }
         }
     }   
@@ -61,10 +61,11 @@ class Hover extends React.PureComponent {
                 }
                 paragraph.setAttribute("data-tip", `${this.state.individualNutrition[i]}`);
                 paragraph.setAttribute("data-for", `i${i}`);
-
-                arrayDiv[i].appendChild(paragraph);
+                
                 arrayDiv[i].appendChild(paragraph);
                 document.getElementById('ingredient-list').appendChild(arrayDiv[i]);
+                // let tip = React.createElement('ReactTooltip', {id:`i${i}`});
+                // ReactDOM.render(tip, document.getElementById('ingredient-list'));
             } 
         }
     }
@@ -94,6 +95,12 @@ class Hover extends React.PureComponent {
                     <ReactTooltip id='i8'/>
                     <ReactTooltip id='i9'/>
                     <ReactTooltip id='i10'/>
+                    <ReactTooltip id='i11'/>
+                    <ReactTooltip id='i12'/>
+                    <ReactTooltip id='i13'/>
+                    <ReactTooltip id='i14'/>
+                    <ReactTooltip id='i15'/>
+                    <ReactTooltip id='i16'/>
                </div>  
             )
         } else {
