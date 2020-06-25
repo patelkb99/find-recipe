@@ -2,6 +2,42 @@ import React from 'react';
 import './Input.css';
 import Hover from './Hover';
 
+const cuisines = [
+    {flag:'american', abb:'us'},
+    {flag:'chinese', abb:'cn'},
+    {flag:'colombian', abb:'co'},
+    {flag:'french', abb:'fr'},
+    {flag:'greek', abb:'gr'},
+    {flag:'indian', abb:'in'},
+    {flag:'italian', abb:'it'},
+    {flag:'japanese', abb:'jp'},
+    {flag:'korean', abb:'kr'},
+    {flag:'mexican', abb:'mx'},
+    {flag:'spanish', abb:'es'},
+    {flag:'thai', abb:'th'},
+];
+
+const Countries = (props) => {    
+    return (
+        <div className="cuisine-images">
+            {props.countries.map(country => 
+            <span 
+                id={country.flag} 
+                key={country.flag} 
+                value={country.flag} 
+                className={"flag-icon flag-icon-" + country.abb + " flag-icon-squared"}
+                title={country.flag +" food"}
+                onClick={() => props.onClick(country.flag)}
+            />
+            )}
+        </div>
+    );
+};
+
+const Results = (props) => {
+
+}
+
 class Input extends React.Component {
     constructor(props) {
       super(props);
@@ -31,148 +67,96 @@ class Input extends React.Component {
         ingredient1: "",
         ingredient2: "",
         ingredient3: "",
-        cuisines: [
-            'american',
-            'chinese',
-            'colombian',
-            'french',
-            'greek', 
-            'indian',
-            'italian',
-            'japanese',
-            'korean',
-            'mexican',
-            'spanish',
-            'thai',
-        ],
         nutrients: [],
-      };
-  
-      this.onIngredient1Change = this.onIngredient1Change.bind(this);
-      this.onIngredient2Change = this.onIngredient2Change.bind(this);
-      this.onIngredient3Change = this.onIngredient3Change.bind(this);
-      this.onSelectChange = this.onSelectChange.bind(this);
+      }
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.onFlagImageClick = this.onFlagImageClick.bind(this);
+    };
+
+    buildURL = () => {
+        var url = "";
+        if (this.state.ingredient1.length > 0 ) {url += this.state.ingredient1 + ",";}
+        if (this.state.ingredient2.length > 0 ) {url += this.state.ingredient2 + ",";}
+        if (this.state.ingredient3.length > 0 ) {url += this.state.ingredient3 + ",";}
+        var fullURL = `http://www.recipepuppy.com/api/?i=${url}&q=${this.state.cuisine}`;
+        return fullURL;
     }
 
-    onIngredient1Change(event) {
-        this.setState({
-            ingredient1: event.target.value
-        });
-    }
-
-    onIngredient2Change(event) {
-        this.setState({
-            ingredient2: event.target.value
-        });
-    }
-
-    onIngredient3Change(event) {
-        this.setState({
-            ingredient3: event.target.value
-        });
-    }
-
-    onSelectChange(event) {
-        this.setState({
-            cuisine: event.target.value
-        });
-    }
-
-    async handleSubmit(event) {
+    handleSubmit = async(event) => {
         event.preventDefault();
+        var fullURL = this.buildURL();
         try {
-            var url = "";
-            if (this.state.ingredient1 !== "" ) {
-                url += this.state.ingredient1 + ",";
-            }
-            if (this.state.ingredient2 !== "" ) {
-                url += this.state.ingredient2 + ",";
-            }
-            if (this.state.ingredient3 !== "" ) {
-                url += this.state.ingredient3 + ",";
-            }
-            console.log(`http://localhost:3000/recipes/random/?i=${url}&q=${this.state.cuisine}`);
-            await fetch(`http://localhost:3000/recipes/random/?i=${url}&q=${this.state.cuisine}`)
-            .then(response => response.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        recipe: result,
-                        found: true
-                    });
-            }).catch((error) => { 
-                console.log(error); 
+            console.log(fullURL);
+            let result = await fetch(fullURL, {
+                mode: "cors"
+            });
+            let response = result.json()
+            console.log(response);
+
+            this.setState({
+                recipe: response,
+                found: true
             });
             document.getElementById('recipe-response').style.display = "block";
         } catch (error) {
             console.log(error);
         }
+
         this.setState({
             ingredient1: "",
             ingredient2: "",
             ingredient3: "",
         });
-    }  
+    };
 
-    onClick(image) {
-        if (image.style.border === "4px solid #71EDE2") {
-            image.style.border="1px solid #EEEEEE";
+    onFlagImageClick = (val) => {
+        let image = document.getElementById(val);
+        if (this.state.cuisine === val) {
+            image.style.border = "1px solid #EEEEEE";
+            this.setState({ cuisine: "" });
         } else {
-            for (let i = 0; i < (this.state.cuisines.length); i++) {
-                var currentCountry = this.state.cuisines[i];
-                var temp = document.getElementById(`${currentCountry}`);
-                temp.style.border = "1px solid #EEEEEE";
-            }
-            this.setState({
-                cuisine: image.id,
+            cuisines.map(country => {
+                return document.getElementById(country.flag).style.border = "1px solid #EEEEEE";
             });
-            image.style.border="4px solid #71EDE2";
+            image.style.border = "4px solid #71EDE2";
+            this.setState({ cuisine: val });
         }
-    }
+    };
 
-    render() {          
+    render() {
         return (
             <div className="filters">
-                <div className="cuisine-images">
-                    <span id="american" className="flag-icon flag-icon-us flag-icon-squared" title="American Food" onClick={() => this.onClick(document.getElementById("american"))}> </span>                    
-                    <span id="chinese" className="flag-icon flag-icon-cn flag-icon-squared" title="Chinese Food" onClick={() => this.onClick(document.getElementById("chinese"))}> </span>
-                    <span id="colombian" className="flag-icon flag-icon-co flag-icon-squared" title="Colombian Food" onClick={() => this.onClick(document.getElementById("colombian"))}> </span>
-                    <span id="french" className="flag-icon flag-icon-fr flag-icon-squared" title="French Food" onClick={() => this.onClick(document.getElementById("french"))}> </span>
-                    <span id="greek" className="flag-icon flag-icon-gr flag-icon-squared" title="Greek Food" onClick={() => this.onClick(document.getElementById("greek"))}> </span>
-                    <span id="indian" className="flag-icon flag-icon-in flag-icon-squared" title="Indian Food" onClick={() => this.onClick(document.getElementById("indian"))}> </span>
-                    <span id="italian" className="flag-icon flag-icon-it flag-icon-squared" title="Italian Food" onClick={() => this.onClick(document.getElementById("italian"))}> </span>
-                    <span id="japanese" className="flag-icon flag-icon-jp flag-icon-squared" title="Japanese Food" onClick={() => this.onClick(document.getElementById("japanese"))}> </span>
-                    <span id="korean" className="flag-icon flag-icon-kr flag-icon-squared" title="Korean Food" onClick={() => this.onClick(document.getElementById("korean"))}> </span>
-                    <span id="mexican" className="flag-icon flag-icon-mx flag-icon-squared" title="Mexican Food" onClick={() => this.onClick(document.getElementById("mexican"))}> </span>
-                    <span id="spanish" className="flag-icon flag-icon-es flag-icon-squared" title="Spanish Food" onClick={() => this.onClick(document.getElementById("spanish"))}> </span>
-                    <span id="thai" className="flag-icon flag-icon-th flag-icon-squared" title="Thai Food" onClick={() => this.onClick(document.getElementById("thai"))}> </span>
-                </div>
+                <Countries countries={cuisines} onClick={this.onFlagImageClick}/>
                 <div className="form">
                     <form onSubmit={this.handleSubmit}>
-                        <label className="ingredient-input">
-                            <input
-                                name="Ingredient 1"
-                                type="text"
-                                value={this.state.ingredient1}
-                                onChange={this.onIngredient1Change} />
-                            <input
-                                name="Ingredient 2"
-                                type="text"
-                                value={this.state.ingredient2}
-                                onChange={this.onIngredient2Change} />
-                            <input
-                                name="Ingredient 3"
-                                type="text"
-                                value={this.state.ingredient3}
-                                onChange={this.onIngredient3Change} />
-                        </label>
-                        <br></br>
+                        <input
+                            name="Ingredient 1"
+                            type="text"
+                            value={this.state.ingredient1}
+                            onChange={event => this.setState({ingredient1: event.target.value})} 
+                            required
+                        />
+                        <input
+                            name="Ingredient 2"
+                            type="text"
+                            value={this.state.ingredient2}
+                            onChange={event => this.setState({ingredient2: event.target.value})} 
+                            required
+                        />
+                        <input
+                            name="Ingredient 3"
+                            type="text"
+                            value={this.state.ingredient3}
+                            onChange={event => this.setState({ingredient3: event.target.value})} 
+                            required
+                        />
+                        <br />
                         <div className="submit">
                             <input name="submit-button" type="submit" value="Find A Recipe!"/>
                         </div> 
                     </form>
                 </div>
+
                 <div id="recipe-response" style={{display: this.state.found ? 'block' : 'none' }} >
                     <h4 className="what-to-cook">You should cook <a href={this.state.recipe.href} target="_blank" rel="noopener noreferrer">{this.state.recipe.title}</a> today!</h4>
                     <div id="ingredient-list">
